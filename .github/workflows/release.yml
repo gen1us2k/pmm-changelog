@@ -11,6 +11,8 @@ jobs:
       - name: Build Changelog
         id: pmm_release
         uses: gen1us2k/pmm-changelog@v1
+        with:
+          release_tag: ${{ github.ref }}
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
