@@ -15,7 +15,7 @@ jobs:
           git clone --depth 1 https://github.com/percona/pmm-doc doc
           cd doc/docs/release-notes
           version="${release_tag/refs\/tags\/v//}"
-          cat ~/$version.md > ${{ github.workspace }}-CHANGELOG.txt
+          cat ./$version.md > ${{ github.workspace }}-CHANGELOG.txt
         env:
           release_tag: ${{ github.ref }}
       - name: echo
