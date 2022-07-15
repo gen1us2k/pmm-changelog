@@ -17,4 +17,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.repo }}
-    - ${{ github.ref_name }}
+    - ${{ inputs.release_tag }}
