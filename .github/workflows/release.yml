@@ -12,7 +12,7 @@ jobs:
         id: pmm_release
         shell: bash
         run: |
-          git clone --depth 1 $1 doc
+          git clone --depth 1 https://github.com/percona/pmm-doc doc
           cd doc/docs/release-notes
           version="${release_tag/refs\/tags\/v//}"
           CHANGELOG=`cat ./$version.md`
