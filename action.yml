@@ -9,7 +9,6 @@ inputs:
   release_tag:
     description: 'Repository URL'
     required: true
-    default: ${{ github.event.inputs.tag }}
 outputs:
   changelog:
     description: 'The generated changelog'
@@ -18,4 +17,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.repo }}
-    - ${{ inputs.release_tag }}
+    - ${{ github.event.inputs.tag }}
