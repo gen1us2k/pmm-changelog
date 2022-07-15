@@ -1,0 +1,16 @@
+# action.yml
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  repo:
+    description: 'Repository URL'
+    required: true
+    default: 'https://github.com/percona/pmm-doc'
+outputs:
+  changelog:
+    description: 'The generated changelog'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo }}
