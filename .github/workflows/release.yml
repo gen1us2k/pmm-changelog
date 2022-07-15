@@ -16,7 +16,7 @@ jobs:
       - name: echo
         shell: bash
         run: |
-          echo "${{steps.pmm_release.outputs.changelog}}"
+          echo "${{ steps.pmm_release.outputs.changelog }}"
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
