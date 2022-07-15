@@ -10,7 +10,15 @@ jobs:
     steps:
       - name: Build Changelog
         id: pmm_release
-        uses: gen1us2k/pmm-changelog@v1
+        shell: bash
+        run: |
+          git clone --depth 1 $1 doc
+          cd doc/docs/release-notes
+          version="${release_tag/refs\/tags\/v//}"
+          CHANGELOG=`cat ./$version.md`
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         with:
           release_tag: ${{ github.ref }}
       - name: echo
