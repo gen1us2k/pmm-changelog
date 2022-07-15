@@ -13,7 +13,11 @@ jobs:
         uses: gen1us2k/pmm-changelog@v1
         with:
           release_tag: ${{ github.ref }}
+      - name: echo
+        shell: bash
+        run: |
+          echo "${{steps.pmm_release.outputs.changelog}}"
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
-          body: ${{steps.pmm_release.outputs.changelog}}
+          body: "${{steps.pmm_release.outputs.changelog}}"
