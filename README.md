@@ -24,6 +24,6 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
-          body: ${{steps.pmm_release.outputs.changelog}}
+          body: ${{env.CHANGELOG}}
 
 ```
