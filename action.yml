@@ -6,6 +6,9 @@ inputs:
     description: 'Repository URL'
     required: true
     default: 'https://github.com/percona/pmm-doc'
+  release_tag:
+    description: 'Repository URL'
+    required: true
 outputs:
   changelog:
     description: 'The generated changelog'
@@ -14,3 +17,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.repo }}
+    - ${{ inputs.release_tag }}
