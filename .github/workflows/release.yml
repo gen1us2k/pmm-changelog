@@ -16,10 +16,9 @@ jobs:
           wget https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/$version.md -O ${{ github.workspace }}-CHANGELOG.txt
         env:
           release_tag: ${{ github.ref }}
-      - name: echo
-        shell: bash
+      - name: Debug
         run: |
-          echo "${{ env.CHANGELOG }}"
+          ls ${{ github.workspace }}
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
