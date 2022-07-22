@@ -13,10 +13,10 @@ jobs:
         shell: bash
         run: |
           version="${release_tag/refs\/tags\/v/}"
-          echo "::set-env PMM_RELEASE_VERSION::$version"
+          echo "::set-output filename=$version.md"
         env:
           release_tag: ${{ github.ref }}
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
-          body_path: https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/$PMM_RELEASE_VERSION.md
+          body_path: https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/${{ steps.pmm_release.outputs.filename }}
