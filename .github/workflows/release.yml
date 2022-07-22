@@ -13,10 +13,10 @@ jobs:
         shell: bash
         run: |
           version="${release_tag/refs\/tags\/v/}"
-          echo "::set-output filename=$version.md"
+          wget https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/$version.md -O ${{ github.workspace }}
         env:
           release_tag: ${{ github.ref }}
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
-          body_path: https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/${{ steps.pmm_release.outputs.filename }}
+          body_path: ${{ github.workspace }}
