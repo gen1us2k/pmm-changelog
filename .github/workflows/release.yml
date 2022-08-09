@@ -13,10 +13,14 @@ jobs:
         shell: bash
         run: |
           version="${release_tag/refs\/tags\/v/}"
-          wget https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/$version.md -O ${{ github.workspace }}
+          wget https://raw.githubusercontent.com/percona/pmm-doc/main/docs/release-notes/$version.md -O ${{ github.workspace }}.md
         env:
           release_tag: ${{ github.ref }}
+      - name: Convert mkdocs
+        shell: bash
+        run: |
+          grep -rl '!!! caution' ${{ github.workspace }}.md | xargs  sed -i '' 's/\!\!\! caution alert alert-warning "\(.*\)"/\> \:warning\: **\1**/g'
       - name: Create Release
         uses: softprops/action-gh-release@v0.1.14
         with:
-          body_path: ${{ github.workspace }}
+          body_path: ${{ github.workspace }}.md
